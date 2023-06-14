@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To-Do List</title>
 </head>
 
 <body>
     <div id="container">
         <div id="header">To-Do List</div>
         <div id="navBar"></div>
-        <div id="content"></div>
+        <div id="content">
+            <div id="formContainer" style="display: none;">
+                <form id="popUpForm" action="" method="POST">
+                    <label for="newToDo">What would you like to add to your to-do list?</label>
+                    <input type="text" id="newToDo" name="newToDo">
+                    <label for="newDueDate">When should this be completed by?</label>
+                    <input type="text" id="newDueDate" name="newDueDate">
+                    <button id="submitToDo" type="submit">Add new to-do</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
