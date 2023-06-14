@@ -2,7 +2,8 @@
 
 ## Requirements
 
-- [ ] View all projects
-- [ ] View all todos in each project
-- [ ] Expand a single todo to see/edit its details
+- [x] View all projects
+- [x] View all todos in each project
+- [ ] Add New Project
+- [ ] Add complete button (toggle)
 - [ ] Delete a todo

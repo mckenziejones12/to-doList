@@ -10,19 +10,24 @@
 
 <body>
     <div id="container">
-        <div id="header">To-Do List</div>
+        <header id="header">To-Do List</header>
         <div id="navBar"></div>
         <div id="content">
-            <div id="formContainer" style="display: none;">
-                <form id="popUpForm" action="" method="POST">
-                    <label for="newToDo">What would you like to add to your to-do list?</label>
-                    <input type="text" id="newToDo" name="newToDo">
-                    <label for="newDueDate">When should this be completed by?</label>
-                    <input type="text" id="newDueDate" name="newDueDate">
-                    <button id="submitToDo" type="submit">Add new to-do</button>
-                </form>
-            </div>
         </div>
+    </div>
+    <div id="formContainer" style="display: none">
+        <form id="popUpForm" action="" method="POST">
+            <div style="margin-bottom: 16px">
+                <label for="newToDo">What would you like to add to your to-do list?</label>
+                <input type="text" id="newToDo" name="newToDo">
+            </div>
+            <div style="margin-bottom: 16px">
+                <label for="newDueDate">When should this be completed by?</label>
+                <input type="text" id="newDueDate" name="newDueDate">
+            </div>
+
+            <button id="submitToDo" type="submit">Add new to-do</button>
+        </form>
     </div>
     <script src="main.js"></script>
 </body>

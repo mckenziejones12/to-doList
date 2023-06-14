@@ -1,9 +1,56 @@
 import "./style.css";
-import { renderProject1ToDoList } from "./project1";
+import { renderProject } from "./project";
+import { Storage } from "./storage";
+
+const storage = new Storage();
+
+function seedData() {
+  storage.set("projects", [
+    {
+      name: "Project 1",
+      todos: [
+        {
+          name: "Groom dog",
+          dueDate: "Today",
+        },
+      ],
+    },
+    {
+      name: "Project 2",
+      todos: [
+        {
+          name: "Buy groceries",
+          dueDate: "Tomorrow",
+        },
+      ],
+    },
+    {
+      name: "Project 3",
+      todos: [
+        {
+          name: "Mow lawn",
+          dueDate: "Saturday",
+        },
+      ],
+    },
+    {
+      name: "Project 4",
+      todos: [
+        {
+          name: "Make dinner",
+          dueDate: "Saturday",
+        },
+      ],
+    },
+  ]);
+}
 
 // Create project tabs in the nav bar that show extended
 // to -do list in content section when clicked
 function defaultPageLoad() {
+  // Add 3 projects to our local storage
+  seedData();
+
   const navBar = document.getElementById("navBar");
   const content = document.getElementById("content");
 
@@ -17,22 +64,24 @@ function defaultPageLoad() {
   const navBarTabs = document.createElement("div");
   navBarTabs.setAttribute("id", "navBarTabs");
 
-  const project1Tab = document.createElement("button");
-  project1Tab.setAttribute("class", "navBarTab");
-  project1Tab.textContent = "project 1";
-  project1Tab.addEventListener("click", () => renderProject1ToDoList(content));
+  // Get projects from storage
+  const projects = storage.get("projects");
 
-  const project2Tab = document.createElement("button");
-  project2Tab.setAttribute("class", "navBarTab");
-  project2Tab.textContent = "project 2";
+  // Create a project tab for each project
+  for (const project of projects) {
+    const projectTab = document.createElement("button");
+    projectTab.setAttribute("class", "navBarTab");
+    projectTab.textContent = project.name;
+    projectTab.addEventListener("click", () => renderProject(content, project));
+
+    navBarTabs.appendChild(projectTab);
+  }
 
   const addNewProjectTab = document.createElement("button");
   addNewProjectTab.setAttribute("class", "navBarTab");
   addNewProjectTab.setAttribute("id", "addNewProjectTab");
   addNewProjectTab.textContent = " + New Project";
 
-  navBarTabs.appendChild(project1Tab);
-  navBarTabs.appendChild(project2Tab);
   navBarTabs.appendChild(addNewProjectTab);
 
   navBarContainer.appendChild(navBarHeader);
