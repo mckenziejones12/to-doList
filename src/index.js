@@ -1,6 +1,7 @@
 import "./style.css";
-import { renderProject } from "./project";
-import { Storage } from "./storage";
+import { renderProject } from "./projectDisplay";
+import { Storage } from "./classes/Storage";
+import { Project } from "./classes/Project";
 
 const storage = new Storage();
 
