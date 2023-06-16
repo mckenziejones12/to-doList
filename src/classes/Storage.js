@@ -4,7 +4,8 @@ export class Storage {
   }
 
   get(key) {
-    return JSON.parse(this.storage.getItem(key));
+    const item = this.storage.getItem(key);
+    return item ? JSON.parse(item) : null;
   }
 
   set(key, value) {

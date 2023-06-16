@@ -15,18 +15,29 @@
         <div id="content">
         </div>
     </div>
-    <div id="formContainer" style="display: none">
-        <form id="popUpForm" action="" method="POST">
+    <!-- new todo form -->
+    <div id="newTodoContainer" style="display: none">
+        <form id="newTodoForm" action="" method="POST">
             <div style="margin-bottom: 16px">
-                <label for="newToDo">What would you like to add to your to-do list?</label>
-                <input type="text" id="newToDo" name="newToDo">
+                <label for="newTodo">What would you like to add to your to-do list?</label>
+                <input type="text" id="newTodo" name="newTodo">
             </div>
             <div style="margin-bottom: 16px">
                 <label for="newDueDate">When should this be completed by?</label>
                 <input type="text" id="newDueDate" name="newDueDate">
             </div>
 
-            <button id="submitToDo" type="submit">Add new to-do</button>
+            <button id="submitTodoBtn" type="submit">Add new to-do</button>
+        </form>
+    </div>
+    <!-- new project form -->
+    <div id="newProjectContainer" style="display: none">
+        <form id="newProjectForm" action="" method="POST">
+            <div style="margin-bottom: 16px">
+                <label for="newProject">What is the name of your new project?</label>
+                <input type="text" id="newProject" name="newProject">
+            </div>
+            <button id="submitProjectBtn" type="submit">Add new project</button>
         </form>
     </div>
     <script src="main.js"></script>

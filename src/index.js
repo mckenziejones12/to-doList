@@ -1,7 +1,8 @@
 import "./style.css";
 import { renderProject } from "./projectDisplay";
 import { Storage } from "./classes/Storage";
-import { Project } from "./classes/Project";
+import { popUpNewProjectForm } from "./newToDo";
+import { addNewProject } from "./newToDo";
 
 const storage = new Storage();
 
@@ -48,10 +49,7 @@ function seedData() {
 
 // Create project tabs in the nav bar that show extended
 // to -do list in content section when clicked
-function defaultPageLoad() {
-  // Add 3 projects to our local storage
-  seedData();
-
+export function renderPage() {
   const navBar = document.getElementById("navBar");
   const content = document.getElementById("content");
 
@@ -66,7 +64,7 @@ function defaultPageLoad() {
   navBarTabs.setAttribute("id", "navBarTabs");
 
   // Get projects from storage
-  const projects = storage.get("projects");
+  const projects = storage.get("projects") || [];
 
   // Create a project tab for each project
   for (const project of projects) {
@@ -82,6 +80,9 @@ function defaultPageLoad() {
   addNewProjectTab.setAttribute("class", "navBarTab");
   addNewProjectTab.setAttribute("id", "addNewProjectTab");
   addNewProjectTab.textContent = " + New Project";
+  addNewProjectTab.addEventListener("click", popUpNewProjectForm);
+  const submitProjectBtn = document.querySelector("#submitProjectBtn");
+  submitProjectBtn.addEventListener("click", addNewProject);
 
   navBarTabs.appendChild(addNewProjectTab);
 
@@ -101,4 +102,4 @@ function defaultPageLoad() {
   content.appendChild(contentContainer);
 }
 
-defaultPageLoad();
+renderPage();
