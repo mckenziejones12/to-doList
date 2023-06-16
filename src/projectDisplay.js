@@ -30,7 +30,7 @@ export const renderProject = (projectIdentifier) => {
   arrayContainer.setAttribute("id", "arrayContainer");
 
   const addNewToDoItem = document.createElement("button");
-  addNewToDoItem.setAttribute("id", "addNewTodo");
+  addNewToDoItem.setAttribute("id", "addNewTodoBtn");
   addNewToDoItem.textContent = "+ New To-Do";
   addNewToDoItem.addEventListener("click", popUpNewToDoForm);
 
@@ -51,6 +51,7 @@ export const renderProject = (projectIdentifier) => {
     todoDueDate.setAttribute("class", "todoDueDate");
     todoDueDate.textContent = todo.dueDate;
     const deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("id", "deleteBtn");
     deleteBtn.textContent = "x";
     deleteBtn.addEventListener("click", () =>
       deleteTodo(project.identifier, todo.identifier)
@@ -86,7 +87,7 @@ export const addNewProject = (e) => {
   const oldProjects = storage.get("projects") || [];
 
   // Create a new project
-  const newProject = new Project(newProjectForm.newProject.value, []);
+  const newProject = new Project(newProjectForm.newProjectName.value, []);
 
   // Set projects again in storage
   storage.set("projects", [...oldProjects, newProject]);
@@ -99,7 +100,7 @@ export const addNewProject = (e) => {
   clearChildren(oldNav);
 
   // Clear form value
-  newProjectForm.newProject.value = "";
+  newProjectForm.newProjectName.value = "";
 
   // Re-render page
   renderPage();

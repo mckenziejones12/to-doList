@@ -48,8 +48,8 @@ export const addNewTodo = (e) => {
 
   // Create a new todo
   const newTodo = new Todo(
-    newTodoForm.newTodo.value,
-    newTodoForm.newDueDate.value
+    newTodoForm.newTodoName.value,
+    newTodoForm.newDueDateName.value
   );
 
   // Find current project
@@ -78,8 +78,8 @@ export const addNewTodo = (e) => {
   clearChildren(oldContent);
 
   // Clear form value
-  newTodoForm.newTodo.value = "";
-  newTodoForm.newDueDate.value = "";
+  newTodoForm.newTodoName.value = "";
+  newTodoForm.newDueDateName.value = "";
 
   // Re-render project page
   renderProject(projectToUpdate.identifier);

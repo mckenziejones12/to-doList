@@ -14,17 +14,19 @@
         <div id="navBar"></div>
         <div id="content">
         </div>
+        <footer id="footer">&copy 2023 McKenzie Jones</footer>
+
     </div>
     <!-- new todo form -->
     <div id="newTodoContainer" style="display: none">
-        <form id="newTodoForm" action="" method="POST">
+        <form id="newTodoForm" method="POST">
             <div style="margin-bottom: 16px">
                 <label for="newTodo">What would you like to add to your to-do list?</label>
-                <input type="text" id="newTodo" name="newTodo">
+                <input type="text" id="newTodo" name="newTodoName">
             </div>
             <div style="margin-bottom: 16px">
                 <label for="newDueDate">When should this be completed by?</label>
-                <input type="text" id="newDueDate" name="newDueDate">
+                <input type="text" id="newDueDate" name="newDueDateName">
             </div>
 
             <button id="submitTodoBtn" type="submit">Add new to-do</button>
@@ -32,10 +34,10 @@
     </div>
     <!-- new project form -->
     <div id="newProjectContainer" style="display: none">
-        <form id="newProjectForm" action="" method="POST">
+        <form id="newProjectForm" method="POST">
             <div style="margin-bottom: 16px">
                 <label for="newProject">What is the name of your new project?</label>
-                <input type="text" id="newProject" name="newProject">
+                <input type="text" id="newProject" name="newProjectName">
             </div>
             <button id="submitProjectBtn" type="submit">Add new project</button>
         </form>
