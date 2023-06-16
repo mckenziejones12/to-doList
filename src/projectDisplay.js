@@ -1,8 +1,14 @@
-import { popUpNewToDoForm } from "./newToDo";
+import { popUpNewToDoForm } from "./todoDisplay";
+import { Project } from "./classes/Project";
+import { clearChildren } from ".";
+import { renderPage } from ".";
+import { Storage } from "./classes/Storage";
+
+const storage = new Storage();
 
 export const renderProject = (oldContent, project) => {
   // Remove old content
-  clearContent(oldContent);
+  clearChildren(oldContent);
 
   // Render Project header and toDoListContainer to page
   const content = document.getElementById("content");
@@ -45,33 +51,44 @@ export const renderProject = (oldContent, project) => {
   }
 };
 
-// Remove all children of currentContent
-export const clearContent = (currentContent) => {
-  const oldContent = currentContent;
-  while (oldContent.firstChild) {
-    currentContent?.removeChild(oldContent.lastChild);
-  }
-};
-
-/*
-Structure of a Project and its todos.
-The shape of the data.
-
-// Project
-{
-  name: '',
-  todos: [
-    {},
-    {},
-    {}
-  ]
+export function popUpNewProjectForm() {
+  const newProjectContainer = document.getElementById("newProjectContainer");
+  newProjectContainer.style.display = "block";
 }
 
-// Todo Item
-{
-  name: '',
-  dueDate: ''
-  completed: true/false
-}
+export function addNewProject(e) {
+  // Prevent default form behavior of submitting
+  e.preventDefault();
 
-*/
+  // Grab old content to clear
+  const oldContent = document.getElementById("content");
+  // Grab old nav to clear
+  const oldNav = document.getElementById("navBar");
+
+  // Grab new project container
+  const newProjectContainer = document.getElementById("newProjectContainer");
+  // Grab new project form
+  const newProjectForm = document.getElementById("newProjectForm");
+
+  // Get projects from storage if they exist, otherwise default to empty array
+  const oldProjects = storage.get("projects") || [];
+
+  // Create a new project
+  const newProject = new Project(newProjectForm.newProject.value, []);
+
+  // Set projects again in storage
+  storage.set("projects", [...oldProjects, newProject]);
+
+  // Hide new project container again
+  newProjectContainer.style.display = "none";
+
+  // Clear old content, nav
+  clearChildren(oldContent);
+  clearChildren(oldNav);
+
+  // Clear form value
+  newProjectForm.newProject.value = "";
+
+  // Re-render page
+  renderPage();
+}

@@ -1,54 +1,13 @@
 import "./style.css";
 import { renderProject } from "./projectDisplay";
 import { Storage } from "./classes/Storage";
-import { popUpNewProjectForm } from "./newToDo";
-import { addNewProject } from "./newToDo";
+import { popUpNewProjectForm } from "./projectDisplay";
+import { addNewProject } from "./projectDisplay";
 
 const storage = new Storage();
 
-function seedData() {
-  storage.set("projects", [
-    {
-      name: "Project 1",
-      todos: [
-        {
-          name: "Groom dog",
-          dueDate: "Today",
-        },
-      ],
-    },
-    {
-      name: "Project 2",
-      todos: [
-        {
-          name: "Buy groceries",
-          dueDate: "Tomorrow",
-        },
-      ],
-    },
-    {
-      name: "Project 3",
-      todos: [
-        {
-          name: "Mow lawn",
-          dueDate: "Saturday",
-        },
-      ],
-    },
-    {
-      name: "Project 4",
-      todos: [
-        {
-          name: "Make dinner",
-          dueDate: "Saturday",
-        },
-      ],
-    },
-  ]);
-}
-
-// Create project tabs in the nav bar that show extended
-// to -do list in content section when clicked
+// Create project tabs in the nav bar
+// Renders the content
 export function renderPage() {
   const navBar = document.getElementById("navBar");
   const content = document.getElementById("content");
@@ -102,4 +61,13 @@ export function renderPage() {
   content.appendChild(contentContainer);
 }
 
+// Remove all children of the element
+export const clearChildren = (element) => {
+  const oldElement = element;
+  while (oldElement.firstChild) {
+    element?.removeChild(oldElement.lastChild);
+  }
+};
+
+// Render the page on load
 renderPage();
