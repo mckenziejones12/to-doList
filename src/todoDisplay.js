@@ -1,5 +1,7 @@
 import { Storage } from "./classes/Storage";
 import { Todo } from "./classes/Todo";
+import { clearChildren } from ".";
+import { renderProject } from "./projectDisplay";
 
 const storage = new Storage();
 
@@ -26,19 +28,32 @@ export const addNewTodo = (e) => {
     newTodoForm.newDueDate.value
   );
 
-  // Set projects again in storage
-  // storage.set("projects", [...oldProjects, newProject]);
+  // Find current project
+  const projectHeader = document.getElementsByClassName("projectHeader")[0];
+  const projectToUpdate = oldProjects.find(
+    (oldProject) => oldProject.name === projectHeader.textContent
+  );
+
+  // Update the project
+  projectToUpdate.todos.push(newTodo);
+
+  // Set projects again in storage with updated project with new todo
+  storage.set(
+    "projects",
+    oldProjects.map((oldProject) =>
+      oldProject.name === projectToUpdate.name ? projectToUpdate : oldProject
+    )
+  );
 
   // Hide new project container again
   newTodoContainer.style.display = "none";
 
   clearChildren(oldContent);
-  clearChildren(oldNav);
 
   // Clear form value
   newTodoForm.newTodo.value = "";
   newTodoForm.newDueDate.value = "";
 
-  // Re-render page
-  renderPage();
+  // Re-render project page
+  renderProject(projectToUpdate);
 };

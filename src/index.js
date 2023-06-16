@@ -3,6 +3,7 @@ import { renderProject } from "./projectDisplay";
 import { Storage } from "./classes/Storage";
 import { popUpNewProjectForm } from "./projectDisplay";
 import { addNewProject } from "./projectDisplay";
+import { addNewTodo } from "./todoDisplay";
 
 const storage = new Storage();
 
@@ -30,7 +31,7 @@ export const renderPage = () => {
     const projectTab = document.createElement("button");
     projectTab.setAttribute("class", "navBarTab");
     projectTab.textContent = project.name;
-    projectTab.addEventListener("click", () => renderProject(content, project));
+    projectTab.addEventListener("click", () => renderProject(project));
 
     navBarTabs.appendChild(projectTab);
   }
@@ -49,6 +50,9 @@ export const renderPage = () => {
   navBarContainer.appendChild(navBarTabs);
 
   navBar.appendChild(navBarContainer);
+
+  const todoFormSubmitBtn = document.getElementById("submitTodoBtn");
+  todoFormSubmitBtn.addEventListener("click", addNewTodo);
 
   const contentContainer = document.createElement("div");
   contentContainer.setAttribute("id", "contentContainer");

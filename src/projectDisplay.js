@@ -6,7 +6,8 @@ import { Storage } from "./classes/Storage";
 
 const storage = new Storage();
 
-export const renderProject = (oldContent, project) => {
+export const renderProject = (project) => {
+  const oldContent = document.getElementById("content");
   // Remove old content
   clearChildren(oldContent);
 
@@ -43,7 +44,7 @@ export const renderProject = (oldContent, project) => {
     toDoTitle.textContent = todo.name;
     const todoDueDate = document.createElement("div");
     todoDueDate.setAttribute("class", "todoDueDate");
-    todoDueDate.textContent = todo.dueDfate;
+    todoDueDate.textContent = todo.dueDate;
 
     arrayContainer.append(todoItem);
     todoItem.appendChild(toDoTitle);
