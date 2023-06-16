@@ -31,7 +31,9 @@ export const renderPage = () => {
     const projectTab = document.createElement("button");
     projectTab.setAttribute("class", "navBarTab");
     projectTab.textContent = project.name;
-    projectTab.addEventListener("click", () => renderProject(project));
+    projectTab.addEventListener("click", () =>
+      renderProject(project.identifier)
+    );
 
     navBarTabs.appendChild(projectTab);
   }

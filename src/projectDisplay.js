@@ -3,10 +3,14 @@ import { Project } from "./classes/Project";
 import { clearChildren } from ".";
 import { renderPage } from ".";
 import { Storage } from "./classes/Storage";
+import { deleteTodo } from "./todoDisplay";
 
 const storage = new Storage();
 
-export const renderProject = (project) => {
+export const renderProject = (projectIdentifier) => {
+  const project = storage
+    .get("projects")
+    .find((p) => p.identifier === projectIdentifier);
   const oldContent = document.getElementById("content");
   // Remove old content
   clearChildren(oldContent);
@@ -46,10 +50,16 @@ export const renderProject = (project) => {
     const todoDueDate = document.createElement("div");
     todoDueDate.setAttribute("class", "todoDueDate");
     todoDueDate.textContent = todo.dueDate;
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "x";
+    deleteBtn.addEventListener("click", () =>
+      deleteTodo(project.identifier, todo.identifier)
+    );
 
     arrayContainer.append(todoItem);
     todoItem.appendChild(toDoTitle);
     todoItem.appendChild(todoDueDate);
+    todoItem.appendChild(deleteBtn);
   }
 };
 

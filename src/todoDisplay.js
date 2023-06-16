@@ -10,12 +10,36 @@ export const popUpNewToDoForm = () => {
   newTodoContainer.style.display = "block";
 };
 
+export const deleteTodo = (projectIdentifier, todoIdentifier) => {
+  const oldContent = document.getElementById("content");
+  const oldProjects = storage.get("projects");
+  const projectToUpdate = storage
+    .get("projects")
+    .find((p) => p.identifier === projectIdentifier);
+  projectToUpdate.todos = projectToUpdate.todos.filter(
+    (todo) => todo.identifier !== todoIdentifier
+  );
+
+  storage.set(
+    "projects",
+    oldProjects.map((oldProject) =>
+      oldProject.identifier === projectToUpdate.identifier
+        ? projectToUpdate
+        : oldProject
+    )
+  );
+
+  clearChildren(oldContent);
+
+  // Re-render project page
+  renderProject(projectToUpdate.identifier);
+};
+
 export const addNewTodo = (e) => {
   // Prevent default form behavior of submitting
   e.preventDefault();
 
   const oldContent = document.getElementById("content");
-  const oldNav = document.getElementById("navBar");
 
   const newTodoContainer = document.getElementById("newTodoContainer");
   const newTodoForm = document.getElementById("newTodoForm");
@@ -28,7 +52,6 @@ export const addNewTodo = (e) => {
     newTodoForm.newDueDate.value
   );
 
-  console.log(oldProjects);
   // Find current project
   const projectHeader = document.getElementsByClassName("projectHeader")[0];
   const projectToUpdate = oldProjects.find(
@@ -59,5 +82,5 @@ export const addNewTodo = (e) => {
   newTodoForm.newDueDate.value = "";
 
   // Re-render project page
-  renderProject(projectToUpdate);
+  renderProject(projectToUpdate.identifier);
 };
