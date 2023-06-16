@@ -28,10 +28,12 @@ export const addNewTodo = (e) => {
     newTodoForm.newDueDate.value
   );
 
+  console.log(oldProjects);
   // Find current project
   const projectHeader = document.getElementsByClassName("projectHeader")[0];
   const projectToUpdate = oldProjects.find(
-    (oldProject) => oldProject.name === projectHeader.textContent
+    (oldProject) =>
+      oldProject.identifier == parseInt(projectHeader.dataset.identifier)
   );
 
   // Update the project
@@ -41,7 +43,9 @@ export const addNewTodo = (e) => {
   storage.set(
     "projects",
     oldProjects.map((oldProject) =>
-      oldProject.name === projectToUpdate.name ? projectToUpdate : oldProject
+      oldProject.identifier === projectToUpdate.identifier
+        ? projectToUpdate
+        : oldProject
     )
   );
 

@@ -20,6 +20,7 @@ export const renderProject = (project) => {
   const projectHeader = document.createElement("div");
   projectHeader.setAttribute("class", "projectHeader");
   projectHeader.textContent = project.name;
+  projectHeader.setAttribute("data-identifier", project.identifier);
 
   const arrayContainer = document.createElement("ul");
   arrayContainer.setAttribute("id", "arrayContainer");
