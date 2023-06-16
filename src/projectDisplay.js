@@ -51,12 +51,12 @@ export const renderProject = (oldContent, project) => {
   }
 };
 
-export function popUpNewProjectForm() {
+export const popUpNewProjectForm = () => {
   const newProjectContainer = document.getElementById("newProjectContainer");
   newProjectContainer.style.display = "block";
-}
+};
 
-export function addNewProject(e) {
+export const addNewProject = (e) => {
   // Prevent default form behavior of submitting
   e.preventDefault();
 
@@ -91,4 +91,4 @@ export function addNewProject(e) {
 
   // Re-render page
   renderPage();
-}
+};

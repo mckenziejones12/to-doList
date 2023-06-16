@@ -8,7 +8,7 @@ const storage = new Storage();
 
 // Create project tabs in the nav bar
 // Renders the content
-export function renderPage() {
+export const renderPage = () => {
   const navBar = document.getElementById("navBar");
   const content = document.getElementById("content");
 
@@ -59,7 +59,7 @@ export function renderPage() {
 
   contentContainer.appendChild(selectProjectMessage);
   content.appendChild(contentContainer);
-}
+};
 
 // Remove all children of the element
 export const clearChildren = (element) => {
